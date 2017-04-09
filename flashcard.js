@@ -11,24 +11,11 @@ function ClozeCard (cloze, partial) {
 	this.partial = partial;
 }
 
-	//card index
-	// var m = 0;
-
-	// //name bank
-	// var bank = [];
-	// var card_;
-
-	// for (var i=0; i < 50; i++) {
-	// 	bank[i] = card_+i;
-	// };
-
 console.log("\n");
 console.log("--------------------------");
 console.log("----Matthews Card App!----");
 console.log("--------------------------");
 console.log("\n");
-
-//var cardArray = [];
 
 function startSetup() {
 
