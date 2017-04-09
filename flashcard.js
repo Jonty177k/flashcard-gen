@@ -12,15 +12,15 @@ function ClozeCard (cloze, partial) {
 }
 
 	//card index
-	var m = 0;
+	// var m = 0;
 
-	//name bank
-	var bank = [];
-	var card_;
+	// //name bank
+	// var bank = [];
+	// var card_;
 
-	for (var i=0; i < 50; i++) {
-		bank[i] = card_+i;
-	};
+	// for (var i=0; i < 50; i++) {
+	// 	bank[i] = card_+i;
+	// };
 
 console.log("\n");
 console.log("--------------------------");
@@ -44,12 +44,15 @@ function startSetup() {
 			name: "back",
 			message: "Write answer that will display on back of card:"
 		}]).then(function(answers){
-			m++;
-			var bank[m] = new BasicCard(answers.front, answers.back);
+			card_name = new BasicCard(answers.front, answers.back);
 			//console.log(cardName);
 			console.log("\n");
-			console.log("You created a new card called: " + bank[m]);
+			console.log("You created a new card object!");
 			console.log("\n");
+			console.log("Front: " + card_name.front);
+			console.log("Back: " + card_name.back);
+			console.log("\n");
+
 			startSetup();
 		});
 	}
@@ -63,12 +66,23 @@ function startSetup() {
 	}, {
 		name: "partial",
 		type: "input",
-		messagge: "What's your partial?"
+		message: "What's your partial?"
 	}]).then(function(answers) {
-		m++ 
-		var bank[m] = new ClozeCard(answers.cloze, answers.partial);
-		bank[m].text = answers.cloze + " " + answers.partial;
+		 
+		cloze_name = new ClozeCard(answers.cloze, answers.partial);
+		cloze_name.text = answers.cloze + " " + answers.partial;
+		console.log("\n");
+		console.log("You created a new card object!");
+		console.log("\n");
+		console.log("Cloze: " + cloze_name.cloze);
+		console.log("Partial: " + "__________ " + cloze_name.partial);
+		console.log("\n");
+		console.log("Full Text: " + cloze_name.text);
+		console.log("\n");
+
+		startSetup();
 	});
+	}	
 	function viewCards() {
 		inquirer.prompt([
 		{
@@ -76,9 +90,12 @@ function startSetup() {
 			message: "Call your card:"
 		}]).then(function(answers) {
 			var input = answers.input;
+			console.log("\n");
 			console.log(eval(input));
+			console.log("\n");
+			startSetup();
 		})
-	}
+	};
 
 	inquirer.prompt([
 	{
@@ -94,25 +111,18 @@ function startSetup() {
 
 		if (answers.choose === "Create Basic Card") {
 			basicSetUp();
-		}
+		};
 		if (answers.choose === "Create Cloze Deleted Card") {
 			clozeSetup();
-		}
+		};
 		if (answers.choose === "Use Cards") {
 			console.log("\n");
-			console.log("    example of card call: 'card_#.front' OR 'card_#.cloze'");
+			console.log("	ex - To call basic cards: 'card_name.front' OR 'card_name.back'");
+			console.log("	ex - To call cloze cards: 'cloze_name.text' OR 'cloze_name.partial'");
 			console.log("\n");
 			viewCards();
-		}
+		};
 	});
 }
 
 startSetup();
-
-
-
-
-
-
-
-
